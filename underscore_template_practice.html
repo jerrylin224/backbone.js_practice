@@ -10,11 +10,17 @@
 <body>
   <script>
   var V = Backbone.View.extend({
-    render: function(){
-      var data = { lat: -27, lon: 153 }
-      this.$el.html(
-        _.template('<%= lat %> <%= lon %>', data)
-        return this
+    el: 'body',
+    render: function() {
+      var data = { 
+        lat: -27,
+        lon: 153 
+      };
+      var template = _.template('<%= lat %>, <%= lon %>')(data);
+      console.log(template);
+      this.$el.html(template);
+      return this;
+    }
   });
 
   var v = new V();
