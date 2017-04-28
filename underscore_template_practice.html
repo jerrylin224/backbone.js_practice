@@ -11,8 +11,13 @@
   <script id="lation-template" type="text/html">
     <p>Latitude: <%= lat %></p>
     <p>Longtitude: <%= lon %></p>
+    <% _([1, 2, 3]).each(function(number) { %>
+      <p>
+        <%= number %>
+      </p>
+    <% }); %>
   </script>
-  
+
   <script>
     var V = Backbone.View.extend({
       el: 'body',
