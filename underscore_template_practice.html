@@ -8,23 +8,27 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
 </head>
 <body>
-  <script>
-  var V = Backbone.View.extend({
-    el: 'body',
-    render: function() {
-      var data = { 
-        lat: -27,
-        lon: 153 
-      };
-      var template = _.template('<%= lat %>, <%= lon %>')(data);
-      console.log(template);
-      this.$el.html(template);
-      return this;
-    }
-  });
-
-  var v = new V();
-  v.render();
+  <script id="lation-template" type="text/html">
+    <p>Latitude: <%= lat %></p>
+    <p>Longtitude: <%= lon %></p>
   </script>
+  
+  <script>
+    var V = Backbone.View.extend({
+      el: 'body',
+      render: function() {
+        var data = { 
+          lat: -27,
+          lon: 153 
+        };
+        var template = $('#lation-template').html();
+        this.$el.html(_.template(template)(data));
+        return this;
+      }
+    });
+
+    var v = new V();
+    v.render();
+    </script>
 </body>
 </html>
