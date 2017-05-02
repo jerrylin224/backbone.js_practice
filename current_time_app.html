@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Current Time</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
+  <script>
+    var RefreshingView = Backbone.View.extend({
+      initialize: function() {
+        this.model.on('change', function() {
+          this.render();
+        }, this)
+      },
+      render: function() {
+        this.$el.html(this.model.get('text'));
+        return this;
+      }
+    });
+
+    var m = new Backbone.Model({text: new Date().toString()});
+    var v = new RefreshingView({model: m, el: 'body'});
+    v.render()
+
+    setInterval(function(){
+      m.set({text: new Date().toString()});
+    }, 1000);
+  </script>
+</head>
+<body>
+</body>
+</html>
